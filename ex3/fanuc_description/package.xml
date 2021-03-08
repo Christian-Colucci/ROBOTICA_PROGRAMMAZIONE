@@ -1,0 +1,15 @@
+<package format="2">
+
+  <name>fanuc_description</name>
+  <version>1.0.0</version>
+
+  <description>The fanuc_description package</description>
+
+  <maintainer email="c.colucci15@studenti.unisa.it">Christian Colucci</maintainer>
+
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <exec_depend>xacro</exec_depend>
+
+</package>

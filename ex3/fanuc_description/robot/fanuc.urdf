@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- 
+    This URDF uses the Denavit-Hartenberg (DH) conventions to place the reference frames of the joints.
+    It uses offsets to correctly place the visual and collision meshes. The Comau SmartSix meshes are
+    generated such that their reference frames' origins are always placed in a center of rotation.
+    This allows to offset the visual and collision meshes by using only the displacements in the
+    mechanical drawing, without the need for manual (and error-prone) adjustements.
+-->
+
+<robot  name="fanuc"  xmlns:xacro="http://www.ros.org/wiki/xacro">         
+    
+    <link name="world"/>
+
+    <joint name="virtual_joint" type="fixed">
+        <parent link="world"/>
+        <child link="base_link"/>
+    </joint>
+
+
+    <!--************************************************BASE_LINK********************************************-->
+    <link name="base_link">
+        <!--link properties-->
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://fanuc_description/meshes/visual/link_0.dae" />
+            </geometry>
+            <material name=""/>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://fanuc_description/meshes/collision/link_0.stl" />
+            </geometry>
+        </collision>
+
+    </link>
+
+
+    <!--************************************************LINK 1********************************************-->
+    <link name="link_1">
+        <!--Link properties-->
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://fanuc_description/meshes/visual/link_1.dae" />
+            </geometry>
+            <material name=""/>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://fanuc_description/meshes/collision/link_1.stl" />
+            </geometry>
+        </collision>
+
+    </link>
+
+    <joint name="joint1" type="revolute">
+        <!--Joint properties-->
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <parent link="base_link" />
+        <child link="link_1" />
+        <axis xyz="0 0 1" />
+        <limit lower="-6.46" upper="5.93" effort="12" velocity="2.443" />
+        <dynamics damping="10.0" friction="50.0" />
+    </joint>
+
+
+     <!--************************************************LINK 2********************************************-->
+    <link name="link_2">
+        <!--Link properties-->
+        <visual>
+            <origin xyz="-0.15 -0.525 0" rpy="-1.5708 0 0" />
+            <geometry>
+                <mesh filename="package://fanuc_description/meshes/visual/link_2.dae" />
+            </geometry>
+            <material name=""/>
+        </visual>
+
+        <collision>
+            <origin xyz="-0.15 -0.525 0" rpy="-1.5708 0 0" />
+            <geometry>
+                <mesh filename="package://fanuc_description/meshes/collision/link_2.stl" />
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="joint2" type="revolute">
+        <!--Joint properties-->
+        <origin xyz="0.15 0 0.525" rpy="1.5708 0 0" />
+        <parent link="link_1" />
+        <child link="link_2" />
+        <axis xyz="0 0 1" />
+        <limit lower="-4.54" upper="4.54" effort="12" velocity="2.792" />
+        <dynamics damping="10.0" friction="50.0" />
+    </joint>
+
+
+    <!--************************************************LINK 3********************************************-->
+    <link name="link_3">
+        <!--Link properties--> 
+
+        <visual>
+            <origin xyz="-1.315 0.15 0" rpy="1.5708 -3.14 1.5708" />
+            <geometry>
+                <mesh filename="package://fanuc_description/meshes/visual/link_3.dae" />
+            </geometry>
+             <material name=""/>
+        </visual>
+
+        <collision>
+            <origin xyz="-1.315 -0.15 0" rpy="1.5708 -3.14 1.5708" />
+            <geometry>
+                <mesh filename="package://fanuc_description/meshes/collision/link_3.stl" />
+            </geometry>
+        </collision>
+
+    </link>
+
+    <joint name="joint3" type="revolute">
+        <!--Joint properties-->
+        <origin xyz="0 0.79 0" rpy="0 0 -1.5708" />
+        <parent link="link_2" />
+        <child link="link_3" />
+        <axis xyz="0 0 1" />
+        <limit lower="-7.99" upper="7.99" effort="12" velocity="2.967" />
+        <dynamics damping="10.0" friction="50.0" />
+    </joint>
+
+
+     <!--************************************************LINK 4********************************************-->
+    <link name="link_4">
+        <!--Link properties-->
+
+        <visual>
+            <origin xyz="1.465 0 -0.15" rpy="0 -1.5708 0" />
+            <geometry>
+                <mesh filename="package://fanuc_description/meshes/visual/link_4.dae" />
+            </geometry>
+            <material name=""/>
+        </visual>
+
+        <collision>
+            <origin xyz="1.465 0 0" rpy="0 -1.5708 0" />
+            <geometry>
+                <mesh filename="package://fanuc_description/meshes/collision/link_4.stl" />
+            </geometry>
+        </collision>
+
+    </link>
+
+    <joint name="joint4" type="revolute">
+        <!--Joint properties-->
+        <origin xyz="0.15 0 0" rpy="1.5708 0 0" />
+        <parent link="link_3" />
+        <child link="link_4" />
+        <axis xyz="0 0 1" />
+        <limit lower="-6.98" upper="6.98" effort="11.7" velocity="10.47" />
+        <dynamics damping="10.0" friction="50.0" />
+    </joint>
+
+
+    <!--************************************************LINK 5********************************************-->
+    <link name="link_5">
+        <!--Link properties-->
+
+        <visual>
+            <origin xyz="1.45 1 0" rpy="1.5708 0 -1.5708" />
+            <geometry>
+                <mesh filename="package://fanuc_description/meshes/visual/link_5.dae" />
+            </geometry>
+            <material name=""/>
+        </visual>
+
+        <collision>
+            <origin xyz="1.45 1.1 0" rpy="1.5708 0 -1.5708" />
+            <geometry>
+                <mesh filename="package://fanuc_description/meshes/collision/link_5.stl" />
+            </geometry>
+        </collision>
+
+    </link>
+    
+    <joint name="joint5" type="revolute">
+        <!--Joint properties-->
+        <origin xyz="0 0 0.860" rpy="-1.5708 0 0" />
+        <parent link="link_4" />
+        <child link="link_5" />
+        <axis xyz="0 0 1" />
+        <limit lower="-4.89" upper="4.89" effort="11.7" velocity="6.545" />
+        <dynamics damping="10.0" friction="50.0" />
+    </joint>
+
+
+    <!--************************************************LINK 6********************************************-->
+    <link name="link_6">
+        <!--Link properties-->
+        <visual>
+            <origin xyz="0 0 0.100" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://fanuc_description/meshes/visual/link_6.dae" />
+            </geometry>
+            <material name=""/>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0.100" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://fanuc_description/meshes/collision/link_6.stl" />
+            </geometry>
+        </collision>
+
+    </link>
+
+    <joint name="joint6" type="revolute">
+        <!--Joint properties-->
+        <origin xyz="0 0 0" rpy="+1.5708 0 0" />
+        <parent link="link_5" />
+        <child link="link_6" />
+        <axis xyz="0 0 1" />
+        <limit lower="-15.71" upper="15.71" effort="5.8" velocity="9.6" />
+        <dynamics damping="10.0" friction="50.0" />
+    </joint>
+
+    <!--************************************************FLANGE********************************************-->
+    <link name="flange"/>
+
+    <joint name="flange" type="fixed">
+        <!--Joint properties-->
+        <origin xyz="0 0 0.100" rpy="0 0 0" />
+        <parent link="link_6" />
+        <child link="flange" />
+    </joint>
+
+</robot>
