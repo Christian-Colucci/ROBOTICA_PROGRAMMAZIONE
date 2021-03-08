@@ -1,0 +1,9 @@
+<launch>
+
+    <arg name="debugger_attached" default="false" />
+
+    <node pkg="circular_planning" type="circular_planning" name="circular_planning" output="screen" unless="$(arg debugger_attached)"/>
+
+    <node pkg="rqt_gui" type="rqt_gui" name="rqt_gui"/>
+
+</launch>
