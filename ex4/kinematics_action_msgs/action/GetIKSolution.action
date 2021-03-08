@@ -1,0 +1,8 @@
+#Goal
+geometry_msgs/Pose end_effector_pose
+---
+#Result
+moveit_msgs/RobotState[] robot_state
+---
+#Feedback
+moveit_msgs/RobotState single_robot_state
